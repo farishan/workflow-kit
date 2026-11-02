@@ -4,3 +4,8 @@ dist/
 *.exe
 *-demo
 workflow-demo
+target/
+*.o
+__pycache__/
+*.pyc
+.pytest_cache/
