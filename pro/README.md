@@ -10,8 +10,8 @@ resale, and sublicensing are not.
   update window).
 - `templates/landing.html` — polished landing-page template (static HTML +
   Tailwind, single file, no build).
-- `video-walkthrough/` — video walkthrough slot (placeholder until recorded;
-  buyers receive updates when shipped).
+- `video-walkthrough/` — 73s walkthrough (terminal + browser tour with voice-over);
+  rendered via `scripts/render-walkthrough.sh` from `docs/video-walkthrough.*`.
 - Priority support entitlement (email, best-effort ~5 business days for Pro;
   48-hour SLA for Team).
 

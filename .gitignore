@@ -12,3 +12,7 @@ __pycache__/
 examples/make-app/main
 examples/make-app/test
 .phpunit.result.cache
+# Local secrets written by `elevenlabs onboard`
+/.env.local
+# Node deps for scripts/tts helper
+node_modules/

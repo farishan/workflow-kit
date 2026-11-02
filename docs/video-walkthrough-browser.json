@@ -1,0 +1,16 @@
+{
+  "output": "dist/workflow-kit-browser.mp4",
+  "baseUrl": "http://localhost:8791",
+  "viewport": { "width": 1440, "height": 900 },
+  "headless": true,
+  "burnIn": true,
+  "tts": { "provider": "elevenlabs", "voiceId": "JBFqnCBsd6RMkjVDRZzb", "model": "eleven_multilingual_v2" },
+  "captionStyle": { "position": "bottom", "fontSize": 22, "bg": "rgba(0,0,0,0.7)", "color": "#ffffff", "maxWidth": 900 },
+  "steps": [
+    { "action": "goto", "url": "/index.html", "caption": "workflow-kit — stop vibe-coding, ship agentic changes.", "narration": "workflow-kit helps you stop vibe-coding and ship agentic changes with a repeatable loop.", "dwellMs": 3000 },
+    { "action": "scroll", "deltaY": 400, "caption": "Spec, implement, verify, review, ship.", "narration": "Write a spec, implement in small increments, run the universal verifier, get a code review, then ship.", "dwellMs": 3000 },
+    { "action": "scroll", "deltaY": 400, "caption": "Files only. No build, no lock-in. Works offline.", "narration": "It ships as files — templates, slash commands, agent personas, and a polyglot verifier. No build, no service, no lock-in.", "dwellMs": 3000 },
+    { "action": "goto", "url": "/index.html", "caption": "Free core on GitHub (MIT). Pro $29, Team $99.", "narration": "The core is free and MIT on GitHub. Pro is twenty-nine dollars, Team is ninety-nine, one-time.", "dwellMs": 3000 },
+    { "action": "scroll", "deltaY": 200, "caption": "Pro pack: landing template, SPEC-PRO, PLAN-PRO, ACCEPTANCE-PRO.", "narration": "Pro adds a landing-page template and extended spec, plan, and acceptance templates.", "dwellMs": 3000 }
+  ]
+}
