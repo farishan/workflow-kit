@@ -90,7 +90,33 @@ if [ -f "$ROOT/Cargo.toml" ]; then
   fi
 fi
 
-# 3c. Makefile fallback
+# 3c. Deno
+if [ -f "$ROOT/deno.json" ] || [ -f "$ROOT/deno.jsonc" ]; then
+  echo "== deno =="
+  if command -v deno >/dev/null 2>&1; then
+    run deno check . 2>/dev/null || true
+    if [ -f "$ROOT/deno.json" ] && grep -q '"test"' "$ROOT/deno.json"; then run deno test || exit 1; fi
+    echo "wf-verify: deno OK"
+    exit 0
+  else
+    echo "wf-verify: deno not installed; skip"
+  fi
+fi
+
+# 3d. Ruby
+if [ -f "$ROOT/Gemfile" ]; then
+  echo "== ruby =="
+  if command -v bundle >/dev/null 2>&1; then
+    if [ -f "$ROOT/Rakefile" ]; then run bundle exec rake || exit 1; fi
+    if ls spec/*_spec.rb >/dev/null 2>&1; then run bundle exec rspec || exit 1; fi
+    echo "wf-verify: ruby OK"
+    exit 0
+  else
+    echo "wf-verify: bundler not installed; skip"
+  fi
+fi
+
+# 3e. Makefile fallback
 if [ -f "$ROOT/Makefile" ] && grep -qE '^(test|check|verify|build):' "$ROOT/Makefile"; then
   echo "== make =="
   if grep -q '^verify:' "$ROOT/Makefile"; then run make verify || exit 1
@@ -101,6 +127,22 @@ if [ -f "$ROOT/Makefile" ] && grep -qE '^(test|check|verify|build):' "$ROOT/Make
   fi
   echo "wf-verify: make OK"
   exit 0
+fi
+
+# 3f. Standalone TypeScript (tsconfig.json, no package.json)
+if [ -f "$ROOT/tsconfig.json" ] && [ ! -f "$ROOT/package.json" ]; then
+  echo "== tsc =="
+  if command -v tsc >/dev/null 2>&1; then
+    run tsc --noEmit || exit 1
+    echo "wf-verify: tsc OK"
+    exit 0
+  elif command -v npx >/dev/null 2>&1; then
+    run npx tsc --noEmit || exit 1
+    echo "wf-verify: tsc OK"
+    exit 0
+  else
+    echo "wf-verify: tsc not available; skip"
+  fi
 fi
 
 # 4. Python
