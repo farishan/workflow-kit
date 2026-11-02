@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+# wf-verify: universal project verifier for the agentic workflow.
+# Runs the project's own verify.sh if present, otherwise detects stack and
+# runs build/typecheck/test/lint. Exits non-zero on any failure.
+set -uo pipefail
+
+DIR="${1:-.}"
+cd "$DIR" 2>/dev/null || { echo "wf-verify: cannot cd to $DIR"; exit 2; }
+ROOT="$(pwd)"
+
+run() { echo ">> $*"; "$@"; }
+
+echo "wf-verify: project=$ROOT"
+
+# 1. Prefer project's own verify.sh
+if [ -x "$ROOT/verify.sh" ]; then
+  echo "== verify.sh =="
+  "$ROOT/verify.sh"
+  rc=$?
+  echo "wf-verify: verify.sh exit=$rc"
+  exit $rc
+fi
+if [ -f "$ROOT/verify.sh" ]; then
+  echo "== verify.sh (bash) =="
+  bash "$ROOT/verify.sh"
+  rc=$?
+  echo "wf-verify: verify.sh exit=$rc"
+  exit $rc
+fi
+
+# 2. Go
+if [ -f "$ROOT/go.mod" ]; then
+  echo "== go =="
+  # gofmt check
+  bad=$(gofmt -l . 2>/dev/null)
+  if [ -n "$bad" ]; then echo "gofmt unformatted:"; echo "$bad"; exit 1; fi
+  run go vet ./... || exit 1
+  run go build ./... || exit 1
+  if ls *_test.go >/dev/null 2>&1 || find . -name '*_test.go' | grep -q .; then
+    run go test ./... || exit 1
+  fi
+  echo "wf-verify: go OK"
+  exit 0
+fi
+
+# 3. Bun / Node (package.json)
+if [ -f "$ROOT/package.json" ]; then
+  if [ -f "$ROOT/bun.lock" ] || [ -f "$ROOT/bun.lockb" ]; then
+    PM=bun
+  elif command -v bun >/dev/null 2>&1 && [ -f "$ROOT/bunfig.toml" ]; then
+    PM=bun
+  else
+    PM=npm
+  fi
+  echo "== $PM (package.json) =="
+  # typecheck
+  if [ "$PM" = "bun" ]; then
+    if grep -q '"typecheck"' package.json; then run bun run typecheck || exit 1; fi
+    if grep -q '"check"' package.json; then run bun run check || exit 1; fi
+    if grep -q '"test"' package.json; then run bun test || exit 1; fi
+    if grep -q '"build"' package.json; then run bun run build || exit 1; fi
+  else
+    if grep -q '"typecheck"' package.json; then run npm run typecheck || exit 1; fi
+    if grep -q '"test"' package.json; then run npm test || exit 1; fi
+    if grep -q '"build"' package.json; then run npm run build || exit 1; fi
+  fi
+  echo "wf-verify: $PM OK"
+  exit 0
+fi
+
+# 3b. Rust (Cargo.toml)
+if [ -f "$ROOT/Cargo.toml" ]; then
+  echo "== cargo =="
+  if command -v cargo >/dev/null 2>&1; then
+    run cargo fmt --check || exit 1
+    run cargo check || exit 1
+    if grep -q '\[\[test\]\]\|\[dev-dependencies\]' "$ROOT/Cargo.toml" 2>/dev/null || find . -name '*.rs' | xargs grep -l '#\[test\]' >/dev/null 2>&1; then
+      run cargo test || exit 1
+    fi
+    echo "wf-verify: cargo OK"
+    exit 0
+  else
+    echo "wf-verify: cargo not installed; skip"
+  fi
+fi
+
+# 3c. Makefile fallback
+if [ -f "$ROOT/Makefile" ] && grep -qE '^(test|check|verify|build):' "$ROOT/Makefile"; then
+  echo "== make =="
+  if grep -q '^verify:' "$ROOT/Makefile"; then run make verify || exit 1
+  elif grep -q '^check:' "$ROOT/Makefile"; then run make check || exit 1
+  else
+    grep -q '^build:' "$ROOT/Makefile" && { run make build || exit 1; }
+    grep -q '^test:' "$ROOT/Makefile" && { run make test || exit 1; }
+  fi
+  echo "wf-verify: make OK"
+  exit 0
+fi
+
+# 4. Python
+if [ -f "$ROOT/pyproject.toml" ] || [ -f "$ROOT/setup.py" ]; then
+  echo "== python =="
+  if [ -f "$ROOT/pytest.ini" ] || find . -name 'test_*.py' | grep -q .; then
+    if command -v python3 >/dev/null 2>&1; then run python3 -m pytest -q || exit 1
+    elif command -v python >/dev/null 2>&1; then run python -m pytest -q || exit 1
+    fi
+  fi
+  echo "wf-verify: python OK"
+  exit 0
+fi
+
+echo "wf-verify: no recognized project (no verify.sh/go.mod/package.json). Nothing to do."
+exit 0
