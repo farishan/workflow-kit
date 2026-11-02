@@ -22,7 +22,7 @@ deferred with a note in `docs/ROADMAP.md`) before announcing.
 ## Accounts / infra
 
 - [x] GitHub repo public, default branch `main`, topics/tags set.
-- [ ] GitHub Pages enabled for `site/` (landing + 404).
+- [x] GitHub Pages enabled for `site/` (landing + 404). (live: farishan.github.io/workflow-kit/)
 - [x] Gumroad account verified; payout + tax info complete (Gumroad is
       merchant of record; VAT handled by Gumroad).
 - [ ] Support email alias live (`support@…`) + canned responses
