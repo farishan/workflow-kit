@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0 (2026-11-02)
+- Productization: landing page, pricing, Pro pack, community files, GitHub Pages/Release workflows.
+- Examples: bun, go, rust, python, deno, php, ts, make, ruby (9 total).
+- Docs: INSTALL, FAQ, TROUBLESHOOTING, EXAMPLES, ARCHITECTURE, COMPARISON, ROADMAP, DEMO, PLAYBOOK, PRODUCT, PRICING.
+- wf-verify expanded: PHP, clippy, biome/eslint; selftest 13 cases.
+
+
 All notable changes to workflow-kit.
 
 ## [0.2.0] - 2026-11-02

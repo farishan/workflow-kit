@@ -37,7 +37,7 @@
   code, pre, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
   header { padding: 24px 0; border-bottom: 1px solid var(--border); }
-  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   .brand { font-weight: 700; font-size: 18px; letter-spacing: -0.02em; }
   .brand span { color: var(--accent); }
   nav a { color: var(--muted); text-decoration: none; font-size: 14px; margin-left: 18px; }
@@ -81,11 +81,18 @@
   .tier li { padding: 6px 0; font-size: 14px; color: var(--muted); }
   .tier li::before { content: "✓ "; color: var(--accent); }
   .tier .btn { text-align: center; margin-top: auto; }
+  .steps { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); counter-reset: step; }
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; }
+  .step .num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #0b0d10; font-weight: 700; font-size: 15px; margin-bottom: 10px; }
+  .step h3 { margin: 0 0 6px; font-size: 16px; }
+  .step p { color: var(--muted); font-size: 14px; margin: 0; }
   footer { padding: 32px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; }
-  footer a { color: var(--muted); }
+  footer a { color: var(--muted); margin: 0 10px; }
+  footer .links { margin-bottom: 8px; }
   @media (max-width: 600px) {
     .install { flex-direction: column; align-items: stretch; }
     .install code { white-space: normal; word-break: break-all; }
+    nav a { margin-left: 12px; }
   }
 </style>
 </head>
@@ -96,6 +103,7 @@
       <div class="brand"><img src="logo.svg" alt="workflow-kit" width="24" height="24" style="vertical-align:middle;margin-right:8px">workflow<span>-kit</span></div>
       <div>
         <a href="#features">Features</a>
+        <a href="#how">How it works</a>
         <a href="#install">Install</a>
         <a href="#pricing">Pricing</a>
         <a href="https://github.com/farishan/workflow-kit">GitHub</a>
@@ -124,8 +132,8 @@
       <p class="sub">Everything you need to run the better flow end to end.</p>
       <div class="grid">
         <div class="card">
-          <h3>wf-verify</h3>
-          <p>Universal verifier that detects your stack and runs build/typecheck/test/lint. Falls back to your own <code>verify.sh</code>.</p>
+          <h3>Universal verifier</h3>
+          <p>wf-verify detects your stack and runs build/typecheck/test/lint. Falls back to your own <code>verify.sh</code>.</p>
           <div class="stacks" style="margin-top:10px">
             <span class="stack">Go</span><span class="stack">Bun/Node</span><span class="stack">Rust</span><span class="stack">Deno</span>
             <span class="stack">Ruby</span><span class="stack">TypeScript</span><span class="stack">Make</span><span class="stack">Python</span><span class="stack">PHP</span>
@@ -149,12 +157,39 @@
           <p>SPEC.md, PLAN.md, ACCEPTANCE.md — scaffolded by <code>/spec</code> for v0 minimal scope.</p>
         </div>
         <div class="card">
-          <h3>Non-destructive</h3>
-          <p>Local-first. No force-push, no history rewrites. Your code stays yours.</p>
+          <h3>Examples</h3>
+          <p>10 example projects across Go, Bun, Rust, Python, Deno, PHP, TS, Make and Ruby — all pass <code>wf-verify</code>.</p>
         </div>
         <div class="card">
-          <h3>CI ready</h3>
-          <p>Ships a GitHub Actions workflow (<code>verify.yml</code>) that runs wf-verify on push/PR.</p>
+          <h3>Selftest</h3>
+          <p><code>selftest.sh</code> runs wf-verify across demos and examples to catch regressions before you ship.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <h2>How it works</h2>
+      <p class="sub">Four steps from idea to shipped change.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Spec</h3>
+          <p>Run <code>/spec</code> to scaffold SPEC.md, PLAN.md and ACCEPTANCE.md for a v0-minimal scope.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Implement</h3>
+          <p>Spawn isolated workers and write code against the plan, one focused change at a time.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Verify</h3>
+          <p>Run <code>wf-verify</code> (or <code>/verify</code>) to build, typecheck, test and lint for your stack.</p>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <h3>Ship</h3>
+          <p>Review with <code>/review</code>, fix, then <code>/ship</code>. Log status and memory.</p>
         </div>
       </div>
     </section>
@@ -214,8 +249,12 @@
 
 <footer>
   <div class="wrap">
+    <div class="links">
+      <a href="docs/">Docs</a>
+      <a href="https://github.com/farishan/workflow-kit">GitHub</a>
+      <a href="#pricing">Pricing</a>
+    </div>
     &copy; 2026 Faris Han &middot; MIT License &middot;
-    <a href="https://github.com/farishan/workflow-kit">GitHub</a> &middot;
     <a href="docs/FAQ.md">FAQ</a>
   </div>
 </footer>
