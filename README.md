@@ -4,8 +4,10 @@ Personal agentic workflow improvement kit (Oscar). Non-destructive, local-first.
 
 ## Contents
 - `templates/` — SPEC.md, PLAN.md, ACCEPTANCE.md
-- `~/.local/bin/wf-verify` — universal verifier (run with project path or cwd)
-- `~/.config/opencode/commands/` — `/spec`, `/verify`, `/review`, `/ship`, `/flow`
+- `bin/wf-verify` — universal verifier (Go/Bun/Node/Rust/Deno/Ruby/TS/Make/Python)
+- `commands/` — /spec /plan /verify /test /review /ship /flow /status /doctor
+- `agents/` — implementer, tester, docs-writer, code-reviewer, go-programmer, software-architect
+- `selftest.sh`, `install.sh`, `.github/workflows/verify.yml`
 
 ## Better flow (see flower viz)
 1. Spec (`/spec`) → SPEC/PLAN/ACCEPTANCE
