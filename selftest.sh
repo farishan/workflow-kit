@@ -13,5 +13,7 @@ run "$ROOT/demo-go" 0
 run /tmp/opencode/denodemo 0
 # missing project is no-op success
 mkdir -p /tmp/opencode/emptydemo && run /tmp/opencode/emptydemo 0
+# broken Go project should fail
+run /tmp/opencode/brokengo 1
 echo "results: pass=$pass fail=$fail"
 [ "$fail" = "0" ]
