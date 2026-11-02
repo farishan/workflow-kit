@@ -4,6 +4,8 @@
 # runs build/typecheck/test/lint. Exits non-zero on any failure.
 set -uo pipefail
 
+QUIET=0
+if [ "${1:-}" = "-q" ] || [ "${1:-}" = "--quiet" ]; then QUIET=1; shift; fi
 if [ "${1:-}" = "-v" ] || [ "${1:-}" = "--version" ]; then
   echo "wf-verify 0.2.0"
   exit 0
