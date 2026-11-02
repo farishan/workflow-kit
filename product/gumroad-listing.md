@@ -69,5 +69,5 @@ seat count; no redistribution).
 
 ## CTA
 
-Buy Pro ($29) → [Gumroad link] · Buy Team ($99) → [Gumroad link] · Free
+Buy Pro ($29) → https://farishan1.gumroad.com/l/sknrfm · Buy Team ($99) → https://farishan1.gumroad.com/l/oxfqak · Free core on GitHub → https://github.com/farishan/workflow-kit
 core on GitHub → https://github.com/farishan/workflow-kit
