@@ -95,7 +95,7 @@ if [ -f "$ROOT/deno.json" ] || [ -f "$ROOT/deno.jsonc" ]; then
   echo "== deno =="
   if command -v deno >/dev/null 2>&1; then
     run deno check . 2>/dev/null || true
-    if [ -f "$ROOT/deno.json" ] && grep -q '"test"' "$ROOT/deno.json"; then run deno test || exit 1; fi
+    if find . -name '*_test.ts' -o -name '*_test.js' | grep -q .; then run deno test || exit 1; fi
     echo "wf-verify: deno OK"
     exit 0
   else
