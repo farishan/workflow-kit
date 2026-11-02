@@ -1,2 +1,6 @@
 dist/
 .tmp/
+dist/
+*.exe
+*-demo
+workflow-demo
