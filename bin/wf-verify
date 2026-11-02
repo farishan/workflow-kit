@@ -68,11 +68,13 @@ if [ -f "$ROOT/package.json" ]; then
     if grep -q '"check"' package.json; then run bun run check || exit 1; fi
     if grep -q '"test"' package.json; then run bun test || exit 1; fi
     if grep -q '"build"' package.json; then run bun run build || exit 1; fi
+    if [ -f "biome.json" ] || [ -f "biome.jsonc" ]; then run bunx biome check . || exit 1; fi
   else
     if grep -q '"typecheck"' package.json; then run npm run typecheck || exit 1; fi
     if grep -q '"check"' package.json; then run npm run check || exit 1; fi
     if grep -q '"test"' package.json; then run npm test || exit 1; fi
     if grep -q '"build"' package.json; then run npm run build || exit 1; fi
+    if [ -f ".eslintrc" ] || [ -f ".eslintrc.js" ] || [ -f "eslint.config.js" ] || [ -f "eslint.config.mjs" ]; then run npx eslint . || exit 1; fi
   fi
   echo "wf-verify: $PM OK"
   exit 0
