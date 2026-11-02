@@ -14,6 +14,7 @@ fi
 OUT="dist/workflow-kit-${VERSION}.zip"
 mkdir -p dist
 rm -f "$OUT"
+LOG="$(mktemp)"
 
 # Files/dirs to include (per release spec).
 zip -r "$OUT" \
@@ -23,6 +24,7 @@ zip -r "$OUT" \
      "*/target/*" "*/__pycache__/*" "*/.pytest_cache/*" \
      "*/tmp/*" "*/temp/*" "*.tmp" "*.o" \
      "dist/*" "dist/workflow-kit-*.zip" \
-  >/tmp/opencode/package.log 2>&1 || { cat /tmp/opencode/package.log; exit 1; }
+  >"$LOG" 2>&1 || { cat "$LOG"; rm -f "$LOG"; exit 1; }
 
+rm -f "$LOG"
 echo "Built $OUT"
