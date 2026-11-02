@@ -15,4 +15,5 @@ test -f commands/spec.md
 test -f agents/implementer.md
 test -x install.sh
 test -x selftest.sh
+./selftest.sh >/tmp/opencode/selftest.log 2>&1 || { cat /tmp/opencode/selftest.log; exit 1; }
 echo "WORKFLOW-KIT VERIFY OK"
