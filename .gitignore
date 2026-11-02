@@ -9,3 +9,5 @@ target/
 __pycache__/
 *.pyc
 .pytest_cache/
+examples/make-app/main
+examples/make-app/test
