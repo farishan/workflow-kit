@@ -14,4 +14,5 @@ test -f ~/.config/opencode/agents/implementer.md
 test -f commands/spec.md
 test -f agents/implementer.md
 test -x install.sh
+test -x selftest.sh
 echo "WORKFLOW-KIT VERIFY OK"
