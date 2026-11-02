@@ -151,6 +151,21 @@ if [ -f "$ROOT/tsconfig.json" ] && [ ! -f "$ROOT/package.json" ]; then
   fi
 fi
 
+# 3g. PHP (composer)
+if [ -f "$ROOT/composer.json" ]; then
+  echo "== php/composer =="
+  if command -v php >/dev/null 2>&1; then
+    if [ -f "$ROOT/vendor/bin/phpunit" ]; then run "$ROOT/vendor/bin/phpunit" || exit 1; fi
+    if [ -f "$ROOT/phpunit.xml" ] || [ -f "$ROOT/phpunit.xml.dist" ]; then
+      if command -v phpunit >/dev/null 2>&1; then run phpunit || exit 1; fi
+    fi
+    echo "wf-verify: php OK"
+    exit 0
+  else
+    echo "wf-verify: php not installed; skip"
+  fi
+fi
+
 # 4. Python
 if [ -f "$ROOT/pyproject.toml" ] || [ -f "$ROOT/setup.py" ]; then
   echo "== python =="
