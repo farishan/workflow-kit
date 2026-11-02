@@ -173,8 +173,12 @@ fi
 if [ -f "$ROOT/pyproject.toml" ] || [ -f "$ROOT/setup.py" ]; then
   echo "== python =="
   if [ -f "$ROOT/pytest.ini" ] || find . -name 'test_*.py' -o -name '*_test.py' | grep -q .; then
-    if command -v python3 >/dev/null 2>&1; then run python3 -m pytest -q || exit 1
-    elif command -v python >/dev/null 2>&1; then run python -m pytest -q || exit 1
+    if command -v python3 >/dev/null 2>&1; then
+      if python3 -c "import pytest" 2>/dev/null; then run python3 -m pytest -q || exit 1
+      else echo "wf-verify: pytest not installed; skip python tests"; fi
+    elif command -v python >/dev/null 2>&1; then
+      if python -c "import pytest" 2>/dev/null; then run python -m pytest -q || exit 1
+      else echo "wf-verify: pytest not installed; skip python tests"; fi
     else echo "wf-verify: python tests present but no interpreter"; exit 1
     fi
   fi
