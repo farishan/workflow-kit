@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1 (2026-11-02)
+- Installer: `install.sh` now supports `curl | bash` bootstrap (clone + install).
+- Playbook: expanded into a full guide (worked example, patterns, troubleshooting, FAQ, pro tips).
+- Pro pack: real templates (SPEC-PRO, PLAN-PRO, ACCEPTANCE-PRO) + `pro/templates/landing.html`; `site/img` shipped.
+- Packaging: `pro/` included in release zip.
+
 ## 0.3.0 (2026-11-02)
 - Productization: landing page, pricing, Pro pack, community files, GitHub Pages/Release workflows.
 - Examples: bun, go, rust, python, deno, php, ts, make, ruby (9 total).

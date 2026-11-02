@@ -18,7 +18,7 @@ LOG="$(mktemp)"
 
 # Files/dirs to include (per release spec).
 zip -r "$OUT" \
-  commands agents templates bin/wf-verify docs site examples install.sh LICENSE README.md CHANGELOG.md VERSION \
+  commands agents templates bin/wf-verify docs site examples pro install.sh LICENSE README.md CHANGELOG.md VERSION \
   -x "*/.git/*" ".git/*" \
      "*/node_modules/*" "node_modules/*" \
      "*/target/*" "*/__pycache__/*" "*/.pytest_cache/*" \

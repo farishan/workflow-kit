@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>workflow-kit — agentic workflow, verified</title>
+<meta name="description" content="Personal agentic workflow improvement kit: spec/plan/acceptance templates, universal verifier (wf-verify), commands and agents for OpenCode.">
+<style>
+  :root {
+    --bg: #0b0d10;
+    --fg: #e6e8eb;
+    --muted: #9aa3af;
+    --accent: #7dd3fc;
+    --card: #14181d;
+    --border: #222831;
+    --btn: #1f242b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fafbfc;
+      --fg: #1a1d21;
+      --muted: #5b6470;
+      --accent: #0369a1;
+      --card: #ffffff;
+      --border: #e2e6ea;
+      --btn: #f1f3f5;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+  }
+  code, pre, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  header { padding: 24px 0; border-bottom: 1px solid var(--border); }
+  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .brand { font-weight: 700; font-size: 18px; letter-spacing: -0.02em; }
+  .brand span { color: var(--accent); }
+  nav a { color: var(--muted); text-decoration: none; font-size: 14px; margin-left: 18px; }
+  nav a:hover { color: var(--fg); }
+  .hero { padding: 72px 0 48px; text-align: center; }
+  .hero h1 { font-size: clamp(34px, 6vw, 56px); margin: 0 0 16px; letter-spacing: -0.03em; line-height: 1.1; }
+  .hero p { color: var(--muted); font-size: clamp(16px, 2vw, 20px); max-width: 640px; margin: 0 auto 28px; }
+  .cta { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    display: inline-block; padding: 12px 22px; border-radius: 8px; font-weight: 600;
+    text-decoration: none; font-size: 15px; border: 1px solid var(--border);
+    background: var(--btn); color: var(--fg); transition: transform .1s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); color: #0b0d10; border-color: var(--accent); }
+  @media (prefers-color-scheme: light) { .btn.primary { color: #fff; } }
+  .install {
+    margin: 28px auto 0; max-width: 720px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 18px; text-align: left; display: flex; align-items: center; gap: 12px;
+  }
+  .install code { flex: 1; font-size: 14px; color: var(--accent); overflow-x: auto; white-space: nowrap; }
+  section { padding: 56px 0; }
+  h2 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.02em; }
+  .sub { color: var(--muted); margin: 0 0 32px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .card h3 { margin: 0 0 6px; font-size: 16px; }
+  .card p { color: var(--muted); font-size: 14px; margin: 0; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--btn); color: var(--muted); margin: 4px 4px 0 0; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--accent); color: #0b0d10; margin-left: 8px; vertical-align: middle; }
+  .stacks { display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack { font-family: ui-monospace, monospace; font-size: 13px; padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--card); }
+  .pricing { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .tier { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; }
+  .tier.featured { border-color: var(--accent); }
+  .tier h3 { margin: 0; font-size: 20px; }
+  .price { font-size: 32px; font-weight: 700; margin: 8px 0 4px; }
+  .price small { font-size: 14px; color: var(--muted); font-weight: 400; }
+  .tier ul { list-style: none; padding: 0; margin: 16px 0 20px; flex: 1; }
+  .tier li { padding: 6px 0; font-size: 14px; color: var(--muted); }
+  .tier li::before { content: "✓ "; color: var(--accent); }
+  .tier .btn { text-align: center; margin-top: auto; }
+  .steps { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); counter-reset: step; }
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; }
+  .step .num { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #0b0d10; font-weight: 700; font-size: 15px; margin-bottom: 10px; }
+  .step h3 { margin: 0 0 6px; font-size: 16px; }
+  .step p { color: var(--muted); font-size: 14px; margin: 0; }
+  footer { padding: 32px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; }
+  footer a { color: var(--muted); margin: 0 10px; }
+  footer .links { margin-bottom: 8px; }
+  @media (max-width: 600px) {
+    .install { flex-direction: column; align-items: stretch; }
+    .install code { white-space: normal; word-break: break-all; }
+    nav a { margin-left: 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="brand"><img src="logo.svg" alt="workflow-kit" width="24" height="24" style="vertical-align:middle;margin-right:8px">workflow<span>-kit</span></div>
+      <div>
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#install">Install</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://github.com/farishan/workflow-kit">GitHub</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Agentic workflow,<br>verified.</h1>
+      <p>Spec, implement, verify, review, ship — a personal kit of templates, commands, agents and a universal verifier for OpenCode.</p>
+      <div class="cta">
+        <a class="btn primary" href="#install">Get started</a>
+        <a class="btn" href="https://github.com/farishan/workflow-kit">View on GitHub</a>
+      </div>
+      <div class="install" id="install">
+        <code>git clone git@github.com:farishan/workflow-kit.git ~/dev/workflow-kit && cd ~/dev/workflow-kit && ./install.sh</code>
+        <a class="btn" href="#install-steps">Manual</a>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>Features</h2>
+      <p class="sub">Everything you need to run the better flow end to end.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Universal verifier</h3>
+          <p>wf-verify detects your stack and runs build/typecheck/test/lint. Falls back to your own <code>verify.sh</code>.</p>
+          <div class="stacks" style="margin-top:10px">
+            <span class="stack">Go</span><span class="stack">Bun/Node</span><span class="stack">Rust</span><span class="stack">Deno</span>
+            <span class="stack">Ruby</span><span class="stack">TypeScript</span><span class="stack">Make</span><span class="stack">Python</span><span class="stack">PHP</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Commands</h3>
+          <p>Slash commands for the full loop.</p>
+          <div style="margin-top:8px">
+            <span class="tag">/spec</span><span class="tag">/plan</span><span class="tag">/verify</span>
+            <span class="tag">/test</span><span class="tag">/review</span><span class="tag">/ship</span>
+            <span class="tag">/flow</span><span class="tag">/status</span><span class="tag">/doctor</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Agents</h3>
+          <p>Specialized subagents: implementer, tester, docs-writer, code-reviewer, go-programmer, software-architect.</p>
+        </div>
+        <div class="card">
+          <h3>Templates</h3>
+          <p>SPEC.md, PLAN.md, ACCEPTANCE.md — scaffolded by <code>/spec</code> for v0 minimal scope.</p>
+        </div>
+        <div class="card">
+          <h3>Examples</h3>
+          <p>10 example projects across Go, Bun, Rust, Python, Deno, PHP, TS, Make and Ruby — all pass <code>wf-verify</code>.</p>
+        </div>
+        <div class="card">
+          <h3>Selftest</h3>
+          <p><code>selftest.sh</code> runs wf-verify across demos and examples to catch regressions before you ship.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <h2>How it works</h2>
+      <p class="sub">Four steps from idea to shipped change.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Spec</h3>
+          <p>Run <code>/spec</code> to scaffold SPEC.md, PLAN.md and ACCEPTANCE.md for a v0-minimal scope.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Implement</h3>
+          <p>Spawn isolated workers and write code against the plan, one focused change at a time.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Verify</h3>
+          <p>Run <code>wf-verify</code> (or <code>/verify</code>) to build, typecheck, test and lint for your stack.</p>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <h3>Ship</h3>
+          <p>Review with <code>/review</code>, fix, then <code>/ship</code>. Log status and memory.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="install-steps">
+      <h2>Install</h2>
+      <p class="sub">One command. See <a href="docs/INSTALL.md">docs/INSTALL.md</a> for manual steps.</p>
+      <div class="install">
+        <code>./install.sh</code>
+      </div>
+      <p style="color:var(--muted);font-size:14px;margin-top:16px">
+        Installs commands, agents and templates into <code>~/.config/opencode</code> and <code>wf-verify</code> into <code>~/.local/bin</code>. Ensure <code>~/.local/bin</code> is on your PATH.
+      </p>
+    </section>
+
+    <section id="pricing">
+      <h2>Pricing</h2>
+      <p class="sub">Pick a tier. (Placeholders — checkout not wired yet.) See <a href="docs/PRICING.md">docs/PRICING.md</a> for full terms.</p>
+      <div class="pricing">
+        <div class="tier">
+          <h3>Free</h3>
+          <div class="price">$0 <small>/ forever</small></div>
+          <ul>
+            <li>Open source kit</li>
+            <li>All commands &amp; agents</li>
+            <li>wf-verify (all stacks)</li>
+            <li>Community support</li>
+          </ul>
+          <a class="btn" href="https://github.com/farishan/workflow-kit">Get Free</a>
+        </div>
+        <div class="tier featured">
+          <h3>Pro <span class="badge">Pro</span></h3>
+          <div class="price">$29 <small>/ one-time</small></div>
+          <ul>
+            <li>Everything in Free</li>
+            <li>Priority updates</li>
+            <li>Private templates pack</li>
+            <li>Email support</li>
+          </ul>
+          <a class="btn primary" href="https://farishan1.gumroad.com/l/sknrfm">Buy Pro</a>
+        </div>
+        <div class="tier">
+          <h3>Team</h3>
+          <div class="price">$99 <small>/ one-time</small></div>
+          <ul>
+            <li>Everything in Pro</li>
+            <li>Up to 10 seats</li>
+            <li>Shared command presets</li>
+            <li>Slack support</li>
+          </ul>
+          <a class="btn" href="https://farishan1.gumroad.com/l/oxfqak">Buy Team</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="docs/">Docs</a>
+      <a href="https://github.com/farishan/workflow-kit">GitHub</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    &copy; 2026 Faris Han &middot; MIT License &middot;
+    <a href="docs/FAQ.md">FAQ</a>
+  </div>
+</footer>
+</body>
+</html>
