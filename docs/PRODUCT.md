@@ -156,8 +156,7 @@ No itch.io (dev-tool audience; itch is game-focused). No hosted SaaS in v0.
    updates is the alternative. Decide before launch.
 4. **Support channel** — default email (`support@` alias) + GitHub Discussions
    for Free. Confirm domain/alias exists.
-5. **Video walkthrough owner** — author records; placeholder ships until done.
-   Confirm willingness/time.
+5. **Video walkthrough owner** — DONE: 73s VHS+Screenwright+ElevenLabs walkthrough shipped, attached to both Gumroad products + GitHub release v0.3.1.
 6. **Landing template stack** — default static HTML + Tailwind (single file).
    Alternative: Astro. Static keeps it copy-pasteable.
 7. **Refund policy** — default 14-day no-questions refund via Gumroad.
