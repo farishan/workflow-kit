@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Pre-commit hook: run wf-verify before allowing commit.
+set -euo pipefail
+ROOT="$(git rev-parse --show-toplevel)"
+WF="$ROOT/bin/wf-verify"
+[ -x "$WF" ] || WF="wf-verify"
+"$WF" "$ROOT"
