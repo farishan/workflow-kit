@@ -15,5 +15,14 @@ run /tmp/opencode/denodemo 0
 mkdir -p /tmp/opencode/emptydemo && run /tmp/opencode/emptydemo 0
 # broken Go project should fail
 run /tmp/opencode/brokengo 1
+run "$ROOT/examples/bun-app" 0
+run "$ROOT/examples/go-service" 0
+run "$ROOT/examples/rust-cli" 0
+run "$ROOT/examples/python-pkg" 0
+run "$ROOT/examples/deno-app" 0
+run "$ROOT/examples/php-lib" 0
+run "$ROOT/examples/ts-standalone" 0
+run "$ROOT/examples/make-app" 0
+run "$ROOT/examples/ruby-app" 0
 echo "results: pass=$pass fail=$fail"
 [ "$fail" = "0" ]

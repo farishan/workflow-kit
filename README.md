@@ -2,13 +2,36 @@
 
 Personal agentic workflow improvement kit (Oscar). Non-destructive, local-first.
 
+## Product
+
+**Stop vibe-coding. Ship agentic changes with a repeatable loop.**
+
+workflow-kit is a files-only kit — spec templates, slash commands, subagent
+personas, and a universal verifier (`wf-verify`) — for AI-assisted coding with
+OpenCode/Claude Code/Cursor/Aider. No build, no service, no lock-in; works
+offline once installed.
+
+- **Tiers:** Free ($0, MIT), Pro ($29 one-time), Team ($99 one-time, up to 5
+  seats). See [docs/PRICING.md](docs/PRICING.md).
+- **Install one-liner:**
+  `git clone git@github.com:farishan/workflow-kit.git ~/dev/workflow-kit && cd ~/dev/workflow-kit && ./install.sh`
+  (details: [docs/INSTALL.md](docs/INSTALL.md)).
+- **Landing page:** [site/index.html](site/index.html)
+- **Docs:** [docs/](docs/) — ARCHITECTURE, COMPARISON, PLAYBOOK, INSTALL, FAQ, PRODUCT, PRICING.
+- **Examples:** [docs/EXAMPLES.md](docs/EXAMPLES.md) — all example projects and `wf-verify` commands.
+
 ## Contents
 - `templates/` — SPEC.md, PLAN.md, ACCEPTANCE.md
 - `bin/wf-verify` — universal verifier (Go/Bun/Node/Rust/Deno/Ruby/TS/Make/Python)
 - `commands/` — /spec /plan /verify /test /review /ship /flow /status /doctor
-- `agents/` — implementer, tester, docs-writer, code-reviewer, go-programmer, software-architect
+- `agents/` — implementer, tester, docs-writer, code-reviewer, go-programmer, software-architect, Oscar (primary)
 - `selftest.sh`, `install.sh`, `.github/workflows/verify.yml`
 - `docs/PLAYBOOK.md` — better flow + command reference
+
+## Examples
+
+See [docs/EXAMPLES.md](docs/EXAMPLES.md) for all example projects and their
+`wf-verify` commands.
 
 ## Better flow (see flower viz)
 1. Spec (`/spec`) → SPEC/PLAN/ACCEPTANCE

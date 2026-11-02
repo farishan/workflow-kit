@@ -1,0 +1,19 @@
+{
+    "name": "workflow-kit/php-lib",
+    "description": "Minimal PHP library example",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "PhpLib\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpLib\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    }
+}
