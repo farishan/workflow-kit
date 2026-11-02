@@ -19,6 +19,12 @@ offline once installed.
 - **Landing page:** [site/index.html](site/index.html)
 - **Docs:** [docs/](docs/) — ARCHITECTURE, COMPARISON, PLAYBOOK, INSTALL, FAQ, PRODUCT, PRICING, RELEASE, LAUNCH-CHECKLIST, GUMROAD-SETUP.- **Examples:** [docs/EXAMPLES.md](docs/EXAMPLES.md) — all example projects and `wf-verify` commands.
 
+## Buy
+
+- Free core: [github.com/farishan/workflow-kit](https://github.com/farishan/workflow-kit) (MIT)
+- Pro ($29): https://farishan1.gumroad.com/l/sknrfm — code `LAUNCH20` = 20% off through Nov 16
+- Team ($99, up to 5 seats): https://farishan1.gumroad.com/l/oxfqak
+
 ## Contents
 - `templates/` — SPEC.md, PLAN.md, ACCEPTANCE.md
 - `bin/wf-verify` — universal verifier (Go/Bun/Node/Rust/Deno/Ruby/TS/Make/Python)
