@@ -61,6 +61,7 @@ if [ -f "$ROOT/package.json" ]; then
     if grep -q '"build"' package.json; then run bun run build || exit 1; fi
   else
     if grep -q '"typecheck"' package.json; then run npm run typecheck || exit 1; fi
+    if grep -q '"check"' package.json; then run npm run check || exit 1; fi
     if grep -q '"test"' package.json; then run npm test || exit 1; fi
     if grep -q '"build"' package.json; then run npm run build || exit 1; fi
   fi
@@ -100,9 +101,10 @@ fi
 # 4. Python
 if [ -f "$ROOT/pyproject.toml" ] || [ -f "$ROOT/setup.py" ]; then
   echo "== python =="
-  if [ -f "$ROOT/pytest.ini" ] || find . -name 'test_*.py' | grep -q .; then
+  if [ -f "$ROOT/pytest.ini" ] || find . -name 'test_*.py' -o -name '*_test.py' | grep -q .; then
     if command -v python3 >/dev/null 2>&1; then run python3 -m pytest -q || exit 1
     elif command -v python >/dev/null 2>&1; then run python -m pytest -q || exit 1
+    else echo "wf-verify: python tests present but no interpreter"; exit 1
     fi
   fi
   echo "wf-verify: python OK"

@@ -6,7 +6,7 @@ agent: software-architect
 Produce three files in the current project root (or a named subdir if $ARGUMENTS
 suggests one):
 
-1. `SPEC.md` — from ~/.config? use ~/dev/workflow-kit/templates/SPEC.md as shape.
+1. `SPEC.md` — use ~/.config/opencode/templates/SPEC.md as shape (fallback ~/dev/workflow-kit/templates/SPEC.md).
    Fill purpose, scope (in/out), data model, API contract, non-functional,
    verification, open questions. Pick sensible defaults; document open questions.
 2. `PLAN.md` — milestones with checkbox tasks, mark parallelizable (P).
