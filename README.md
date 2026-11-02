@@ -8,6 +8,7 @@ Personal agentic workflow improvement kit (Oscar). Non-destructive, local-first.
 - `commands/` — /spec /plan /verify /test /review /ship /flow /status /doctor
 - `agents/` — implementer, tester, docs-writer, code-reviewer, go-programmer, software-architect
 - `selftest.sh`, `install.sh`, `.github/workflows/verify.yml`
+- `docs/PLAYBOOK.md` — better flow + command reference
 
 ## Better flow (see flower viz)
 1. Spec (`/spec`) → SPEC/PLAN/ACCEPTANCE
