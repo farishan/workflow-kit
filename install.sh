@@ -7,5 +7,7 @@ cp "$ROOT"/commands/*.md ~/.config/opencode/commands/
 cp "$ROOT"/agents/*.md ~/.config/opencode/agents/ 2>/dev/null || true
 cp "$ROOT"/templates/* ~/.config/opencode/templates/
 cp "$ROOT/bin/wf-verify" ~/.local/bin/wf-verify
+mkdir -p ~/.config/workflow-kit/hooks
+cp "$ROOT"/hooks/* ~/.config/workflow-kit/hooks/ 2>/dev/null || true
 chmod +x ~/.local/bin/wf-verify
 echo "installed"
