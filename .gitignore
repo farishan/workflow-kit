@@ -11,3 +11,4 @@ __pycache__/
 .pytest_cache/
 examples/make-app/main
 examples/make-app/test
+.phpunit.result.cache
