@@ -15,6 +15,8 @@ Assets needed:
 - video walkthrough (in progress)
 
 Links:
+- Landing: https://farishan.github.io/workflow-kit/
 - GitHub: https://github.com/farishan/workflow-kit
+- Discussion: https://github.com/farishan/workflow-kit/discussions/1
 - Gumroad Pro: https://farishan1.gumroad.com/l/sknrfm
 - Gumroad Team: https://farishan1.gumroad.com/l/oxfqak
