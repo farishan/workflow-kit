@@ -4,6 +4,11 @@
 # runs build/typecheck/test/lint. Exits non-zero on any failure.
 set -uo pipefail
 
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  echo "wf-verify [path]  - universal project verifier"
+  echo "  runs verify.sh if present, else detects Go/Bun/Node/Rust/Python/Make"
+  exit 0
+fi
 DIR="${1:-.}"
 cd "$DIR" 2>/dev/null || { echo "wf-verify: cannot cd to $DIR"; exit 2; }
 ROOT="$(pwd)"
