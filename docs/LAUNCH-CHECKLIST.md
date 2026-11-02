@@ -55,7 +55,7 @@ deferred with a note in `docs/ROADMAP.md`) before announcing.
 - [x] Product Hunt submission (v1) prepared with landing + screenshots.
 - [ ] OpenCode marketplace listing submitted (v1).
 - [x] README updated with tiers link, support email, install one-liner.
-- [ ] GitHub Discussions enabled; welcome post pinned.
+- [x] GitHub Discussions enabled; launch post live (discussion #1).
 - [x] Metrics baseline noted (`docs/METRICS.md`).
 
 ## Post-launch (first 48h)
