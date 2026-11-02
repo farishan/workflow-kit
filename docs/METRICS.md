@@ -1,5 +1,11 @@
 # Success metrics
 
+Baseline (2026-11-02, launch day):
+- Products live: Pro $29, Team $99 (Gumroad), published 2026-11-02.
+- GitHub release v0.3.1 with zip + walkthrough mp4.
+- Landing: https://farishan.github.io/workflow-kit/
+- Launch discussion: https://github.com/farishan/workflow-kit/discussions/1
+
 Track after launch:
 - GitHub stars / forks
 - Gumroad sales (units + revenue)
