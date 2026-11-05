@@ -26,8 +26,9 @@ offline once installed.
 ## Buy
 
 - Free core: [github.com/farishan/workflow-kit](https://github.com/farishan/workflow-kit) (MIT)
-- Pro ($29): https://farishan1.gumroad.com/l/sknrfm — code `LAUNCH20` = 20% off through Nov 16
+- Pro ($29): https://farishan1.gumroad.com/l/sknrfm — codes: `WK20` (20% off), `FIRST10` (50% off first 10 orders), `VIP50` (50% off 5 orders)
 - Team ($99, up to 5 seats): https://farishan1.gumroad.com/l/oxfqak
+- Free starter (lead magnet): https://farishan1.gumroad.com/l/bqpoc
 
 ## Contents
 - `templates/` — SPEC.md, PLAN.md, ACCEPTANCE.md
