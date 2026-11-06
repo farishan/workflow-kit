@@ -4,6 +4,8 @@
 [![Discussion](https://img.shields.io/badge/discussion-join-blue)](https://github.com/farishan/workflow-kit/discussions/1)
 [![Gumroad Pro](https://img.shields.io/badge/Gumroad-Pro%20%2429-ff90e8)](https://farishan1.gumroad.com/l/sknrfm)
 
+![workflow-kit cover](docs/img/cover.png)
+
 Personal agentic workflow improvement kit (Oscar). Non-destructive, local-first.
 
 ## Product
