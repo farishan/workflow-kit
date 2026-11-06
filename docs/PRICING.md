@@ -36,6 +36,8 @@ Everything in Free plus the **Pro pack**:
 - Commercial license for Pro-pack assets: use in client/commercial projects;
   no redistribution or resale.
 - Early access to new commands/agents before they reach Free.
+- agent-tools OpenCode plugins (sweep + doctor) bundled for Pro buyers
+  (also available free standalone).
 - Perpetual license for the purchased version; 12 months of updates included.
 
 ## Team — $99 one-time (up to 5 seats)
