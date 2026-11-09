@@ -2,6 +2,14 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 WF="$ROOT/bin/wf-verify"
+mkdir -p /tmp/opencode/denodemo
+cat >/tmp/opencode/denodemo/deno.json <<'EOF'
+{ "tasks": { "test": "deno test" } }
+EOF
+printf 'export function add(a:number,b:number){return a+b;}\nDeno.test("add",()=>{if(add(1,2)!==3) throw new Error("bad");});\n' >/tmp/opencode/denodemo/main.ts
+mkdir -p /tmp/opencode/brokengo
+printf 'module brokengo\ngo 1.24\n' >/tmp/opencode/brokengo/go.mod
+printf 'package main\nfunc main(){ fmt.Println("x") }\n' >/tmp/opencode/brokengo/main.go
 pass=0; fail=0
 run() {
   local dir="$1" expect="$2"
