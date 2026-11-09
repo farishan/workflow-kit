@@ -43,6 +43,9 @@ if [ -f "$ROOT/go.mod" ]; then
   # gofmt check
   bad=$(gofmt -l . 2>/dev/null)
   if [ -n "$bad" ]; then echo "gofmt unformatted:"; echo "$bad"; exit 1; fi
+  # Avoid picking up an ancestor go.work (e.g. a labs/workspace go.work) that
+  # would reject this module. Force module mode for verification.
+  export GOWORK=off
   run go vet ./... || exit 1
   run go build ./... || exit 1
   if ls *_test.go >/dev/null 2>&1 || find . -name '*_test.go' | grep -q .; then

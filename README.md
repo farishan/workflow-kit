@@ -6,6 +6,9 @@
 
 Personal agentic workflow improvement kit (Oscar). Non-destructive, local-first.
 
+OpenCode-native dev toolkit: sweep, doctor, smartclean, monokit, and a universal
+verifier (`wf-verify`) across Go/Bun/Rust/Python/Make/TS. Not another generic
+spec kit — built for the OpenCode ecosystem.
 ## Product
 
 **Stop vibe-coding. Ship agentic changes with a repeatable loop.**
