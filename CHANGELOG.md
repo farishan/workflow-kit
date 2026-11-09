@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.2 (2026-11-10)
+- Fix: `wf-verify` now ignores an ancestor `go.work` (sets `GOWORK=off`) so Go projects verify in workspace repos.
+- Fix: example/demo `verify.sh` scripts set `GOWORK=off`.
+- Test: selftest now provisions its Deno/Go fixtures and passes 13/13.
+
 ## 0.3.1 (2026-11-02)
 - Installer: `install.sh` now supports `curl | bash` bootstrap (clone + install).
 - Playbook: expanded into a full guide (worked example, patterns, troubleshooting, FAQ, pro tips).
