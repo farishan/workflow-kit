@@ -16,3 +16,6 @@ examples/make-app/test
 /.env.local
 # Node deps for scripts/tts helper
 node_modules/
+
+# Local secrets
+.env
