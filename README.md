@@ -25,7 +25,7 @@ offline once installed.
 - **Install one-liner:**
   `git clone git@github.com:farishan/workflow-kit.git ~/dev/workflow-kit && cd ~/dev/workflow-kit && ./install.sh`
   (details: [docs/INSTALL.md](docs/INSTALL.md)).
-- **Landing page:** https://opencode.farishan.com/ (also [site/index.html](site/index.html))
+- **Landing page:** https://devkit.farishan.com/ (also [site/index.html](site/index.html))
 - **Docs:** [docs/](docs/) — ARCHITECTURE, COMPARISON, PLAYBOOK, INSTALL, FAQ, PRODUCT, PRICING, RELEASE, LAUNCH-CHECKLIST, GUMROAD-SETUP.- **Examples:** [docs/EXAMPLES.md](docs/EXAMPLES.md) — all example projects and `wf-verify` commands.
 
 ## Buy
