@@ -68,3 +68,9 @@ See [docs/EXAMPLES.md](docs/EXAMPLES.md) for all example projects and their
 
 ## Install / sync
 Files live in config; no build needed. `wf-verify` must be on PATH (`~/.local/bin`).
+
+---
+
+## Support
+
+If this is useful, a star on GitHub helps. Paid tier (OpenCode Dev Toolkit) on Gumroad: https://farishan1.gumroad.com/l/sknrfm
